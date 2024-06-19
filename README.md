@@ -117,12 +117,6 @@ func Decode(filename string) (string, error)
 Contributions are welcome! Please open an issue or submit a pull request for any changes.
 
 
-## Author
-
-- **Myrachanto**
-- [GitHub](https://github.com/myrachanto)
-- [Email](mailto:myrachanto@gmail.com)
-
 ## Acknowledgments
 
 - Inspired by various open-source barcode libraries.
