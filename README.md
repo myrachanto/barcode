@@ -13,7 +13,7 @@ The Barcode Package is a simple yet powerful library written in Golang designed 
 To install the Barcode Package, use `go get`:
 
 ```sh
-go get github.com/yourusername/barcode
+go get github.com/myrachanto/barcode
 ```
 
 ## Usage
@@ -21,7 +21,7 @@ go get github.com/yourusername/barcode
 First, import the package in your Go file:
 
 ```go
-import "github.com/yourusername/barcode"
+import "github.com/myrachanto/barcode"
 ```
 
 ### Generate Barcode String
