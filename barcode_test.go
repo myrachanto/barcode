@@ -21,7 +21,7 @@ func TestBarCodeValidity(t *testing.T) {
 
 	for _, test := range tests {
 		t.Run(test.testName, func(t *testing.T) {
-			filename := "barcode.png"
+			filename := "barcode"
 			err := Encode(test.msg, filename)
 			require.EqualValues(t, test.errMessage, err)
 			if err == nil {
