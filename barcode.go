@@ -20,6 +20,10 @@ import (
 	"golang.org/x/image/math/fixed"
 )
 
+// Encode takes the message to be encode to a barcode image
+// since we are working with a barcode that normally works with 13
+// characters we check the length of the message to be equal to 13 characters
+// it creates an image
 func Encode(msg, filename string) error {
 	if len(msg) != 13 {
 		return fmt.Errorf("require name to be 13 characters")
@@ -50,6 +54,8 @@ func Encode(msg, filename string) error {
 	return nil
 }
 
+// Decode takes an file name without the .png extension and
+// decodes the information on the barcode
 func Decode(filename string) (string, error) {
 	filename = fmt.Sprintf("%s.png", filename)
 	// Open the image file
@@ -80,6 +86,8 @@ func Decode(filename string) (string, error) {
 	return result.GetText(), nil
 }
 
+// addTextToImage add the number at the bottom of the image
+// its a helper function
 func addTextToImage(img image.Image, text string) (image.Image, error) {
 	bounds := img.Bounds()
 	newHeight := bounds.Dy() + 30 // Increased height for more space
@@ -107,6 +115,10 @@ func addTextToImage(img image.Image, text string) (image.Image, error) {
 
 	return newImg, nil
 }
+
+// generates a string of 13 numbers
+// using uuid to generate unique number
+// then hash it into 13 code number
 func GenerateBarCodeNumber() string {
 	newUUID := uuid.New()
 	// Convert the UUID to a string
