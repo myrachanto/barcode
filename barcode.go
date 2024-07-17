@@ -10,11 +10,14 @@ import (
 	"image/png"
 	"math/big"
 	"os"
+	"strconv"
 	"strings"
+	"time"
 
 	"github.com/google/uuid"
 	"github.com/makiuchi-d/gozxing"
 	"github.com/makiuchi-d/gozxing/oned"
+	"golang.org/x/exp/rand"
 	"golang.org/x/image/font"
 	"golang.org/x/image/font/basicfont"
 	"golang.org/x/image/math/fixed"
@@ -119,7 +122,7 @@ func addTextToImage(img image.Image, text string) (image.Image, error) {
 // generates a string of 13 numbers
 // using uuid to generate unique number
 // then hash it into 13 code number
-func GenerateBarCodeNumber() string {
+func GenerateBarCodeNumber1() string {
 	newUUID := uuid.New()
 	// Convert the UUID to a string
 	uuid := newUUID.String()
@@ -134,8 +137,24 @@ func GenerateBarCodeNumber() string {
 	// Convert hexadecimal to decimal
 	intVal, _ := new(big.Int).SetString(hashString, 16)
 
-	// Convert to 13-digit code
 	code := intVal.Mod(intVal, big.NewInt(10000000000000))
-
 	return code.String()
+}
+func Get13BarCodeNumber() string {
+	code := GenerateBarCodeNumber1()
+	if len(code) != 13 {
+		fmt.Println("not long enough hit!")
+		return GenerateBarCodeNumber1()
+	} else {
+		return code
+	}
+}
+
+func GenerateBarCodeNumber() string {
+	num := time.Now().UnixNano()
+	rand.Seed(uint64(num))
+	min := int64(100000000000)
+	max := int64(999999999999)
+	code := rand.Int63n(max-min+1) + min
+	return strconv.FormatInt(code, 10)
 }

@@ -6,6 +6,7 @@ require (
 	github.com/google/uuid v1.6.0
 	github.com/makiuchi-d/gozxing v0.1.1
 	github.com/stretchr/testify v1.9.0
+	golang.org/x/exp v0.0.0-20240716175740-e3f259677ff7
 	golang.org/x/image v0.17.0
 )
 
